@@ -9,7 +9,7 @@ const Footer = () => {
       <div className="container px-2 sm:px-1 md:px-40 flex flex-wrap mx-auto text-gray-700">
         <div className="flex-1 px-2">
           <h6 className="py-4 uppercase text-sm font-bold min-w-max text-black">
-            discover fashion store
+            discover our store
           </h6>
           <ul className="text-xs">
             <a href="#">
