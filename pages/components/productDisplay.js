@@ -46,7 +46,7 @@ const ProductDisplay = (props) => {
       <div ref={sliderRef} className="keen-slider w-full">
         {imageURL.map((image) => {
           return (
-            <div className="keen-slider__slide h-72 md:h-120 bg-loading bg-no-repeat bg-cover">
+            <div className="keen-slider__slide h-72 md:h-96 lg:h-120 bg-loading bg-no-repeat bg-cover">
               <img
                 src={image && `/images/${image}`}
                 alt=""
