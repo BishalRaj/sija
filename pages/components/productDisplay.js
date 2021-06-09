@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ContentTitle from "./contentTitle";
 import { useKeenSlider } from "keen-slider/react";
 
@@ -6,8 +6,9 @@ import "keen-slider/keen-slider.min.css";
 const ProductDisplay = (props) => {
   const imageURL = ["one.JPG", "two.JPG", "three.JPG", "two.JPG"];
   // const imageURL = [];
-  const [pause, setPause] = React.useState(false);
-  const timer = React.useRef();
+  const [pause, setPause] = useState(false);
+  const [screenWidth, setscreenWidth] = useState(1024);
+  const timer = useRef();
   const [sliderRef, slider] = useKeenSlider({
     loop: true,
     duration: 1000,
@@ -17,11 +18,19 @@ const ProductDisplay = (props) => {
     dragEnd: () => {
       setPause(false);
     },
-    slidesPerView: 3,
+    slidesPerView: screenWidth >= 768 ? 3 : 2,
     spacing: 10,
   });
 
-  React.useEffect(() => {
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      // detect window screen width function
+      console.log(window.innerWidth);
+      setscreenWidth(window.innerWidth);
+    }
+  }, []);
+
+  useEffect(() => {
     sliderRef.current.addEventListener("mouseover", () => {
       setPause(true);
     });
@@ -30,7 +39,7 @@ const ProductDisplay = (props) => {
     });
   }, [sliderRef]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     timer.current = setInterval(() => {
       if (!pause && slider) {
         slider.next();
