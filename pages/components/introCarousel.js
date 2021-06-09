@@ -23,8 +23,11 @@ const IntroCarousel = () => {
     };
   }, [slider]);
   return (
-    <section className="w-full md:h-screen relative">
-      <div ref={sliderRef} className="fader h-96 md:h-90vh relative">
+    <section className="w-full sm:h-110 md:h-75vh lg:h-80vh relative">
+      <div
+        ref={sliderRef}
+        className="fader h-64 sm:h-full md:h-full lg:h-full relative"
+      >
         {images.map((src, idx) => (
           <div
             key={idx}

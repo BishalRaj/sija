@@ -1,11 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import {
+  MenuIcon,
   SearchIcon,
   ShoppingBagIcon,
   UserIcon,
+  XIcon,
 } from "@heroicons/react/outline";
 
 const Nav = () => {
+  // toggle
+
+  const [toggle, settoggle] = useState(false);
+  const logo = "/logo.png";
+
   // css classes
   let iconClass =
     "h-5 w-7 mx-auto my-2 sm:my-0  text-gray-500 hover:text-gray-900 flex-row sm:flex-col sm:mx-auto md:mx-3 md:flex-row md:h-7 md:w-7";
@@ -13,14 +20,31 @@ const Nav = () => {
   let listDesktop = "flex-1  p-4 sm:p-1 md:p-4 text-gray-600 hover:text-black";
 
   return (
-    <nav className="static w-full shadow-md bg-white flex flex-wrap px-10 py-5 text-sm sm:fixed sm:z-10 sm:top-0 sm:px-2 sm:py-0">
+    <nav className="static w-full shadow-md bg-white flex flex-wrap px-10  text-sm sm:fixed sm:z-10 sm:top-0 sm:px-2 ">
       {/* Logo */}
       <div className="items-center justify-center sm:justify-start flex sm:flex-1 sm:min-w-0  min-w-full">
         <img
-          src="http://pngimg.com/uploads/lamborghini/lamborghini_PNG10709.png"
+          src={
+            logo
+              ? logo
+              : "http://pngimg.com/uploads/lamborghini/lamborghini_PNG10709.png"
+          }
           alt=""
-          className="py-2 ml-5 w-8"
+          className="py-2 ml-5 w-20"
         />
+        <div className="relative -right-28  h-10 w-14 block sm:hidden ">
+          {toggle ? (
+            <XIcon
+              className="h-full w-full"
+              onClick={() => settoggle(!toggle)}
+            />
+          ) : (
+            <MenuIcon
+              className="h-full w-full"
+              onClick={() => settoggle(!toggle)}
+            />
+          )}
+        </div>
       </div>
 
       {/* Hidden in mobile view */}
@@ -36,19 +60,25 @@ const Nav = () => {
       </div>
 
       {/* Visible in mobile view */}
-      <div className="uppercase flex-1 bg-gray-100 block sm:hidden">
-        <ul className=" flex flex-wrap text-center cursor-pointer">
-          <li className={`${listMobile}`}>new arrivals</li>
-          <li className={`${listMobile}`}>women</li>
-          <li className={`${listMobile}`}>men</li>
-          <li className={`${listMobile}`}>accessories</li>
-          <li className={`${listMobile}`}>sale</li>
-          <li className={`${listMobile}`}>our store</li>
-        </ul>
-      </div>
+      {toggle && (
+        <div className="uppercase  flex-1 bg-gray-100 block sm:hidden">
+          <ul className=" flex flex-wrap text-center cursor-pointer">
+            <li className={`${listMobile}`}>new arrivals</li>
+            <li className={`${listMobile}`}>women</li>
+            <li className={`${listMobile}`}>men</li>
+            <li className={`${listMobile}`}>accessories</li>
+            <li className={`${listMobile}`}>sale</li>
+            <li className={`${listMobile}`}>our store</li>
+          </ul>
+        </div>
+      )}
 
       {/* Icons */}
-      <div className="min-w-full flex items-center justify-center w-max bg-gray-100 sm:bg-white sm:justify-end sm:flex-1 md:flex-1 sm:min-w-0">
+      <div
+        className={` ${
+          toggle ? "block" : "hidden"
+        }  min-w-full flex items-center justify-center w-max bg-gray-100 sm:bg-white sm:justify-end sm:flex-1 md:flex-1 sm:min-w-0 sm:inline-flex`}
+      >
         <div className="flex" />
         <SearchIcon className={`${iconClass}`} />
         <UserIcon className={`${iconClass}`} />

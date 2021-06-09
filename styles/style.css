@@ -45,12 +45,12 @@
 }
 
 .arrow--left {
-  left: 50px;
+  left: 20px;
 }
 
 .arrow--right {
   left: auto;
-  right: 50px;
+  right: 20px;
 }
 
 .arrow--disabled {
