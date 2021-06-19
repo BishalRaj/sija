@@ -5,7 +5,7 @@ const Footer = () => {
   let date = new Date();
 
   return (
-    <footer className="bg-red-50 tracking-wide mt-10">
+    <footer className="bg-red-50 tracking-wide">
       <div className="container px-2 sm:px-1 md:px-40 flex flex-wrap mx-auto text-gray-700">
         <div className="flex-1 px-2">
           <h6 className="py-4 uppercase text-sm font-bold min-w-max text-black">
